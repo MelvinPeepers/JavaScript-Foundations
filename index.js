@@ -56,7 +56,7 @@ If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly 
 */
 
 function mortgageCalculator() {
-  console.log(name + ", your monthly rate is " + monthlyRate);
+  return (name + ", your monthly rate is " + monthlyRate);
 }
 
 
@@ -68,7 +68,11 @@ For example,
 mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 */
 
+function mortgageCalculator(P, I, N) {
+  return (P * (I/12 * (1 + I/12)**(N * 12) / ((1 + I/12)**(N * 12) - 1)));
+}
 
+console.log(mortgageCalculator(200000, 0.05, 30));
 
 
 
@@ -80,7 +84,16 @@ Then, add control flow within your function such that IF creditScore is above 74
 Hint: To drop an interest rate by 5% you can take monthlyRate and multiply it by 0.95. Similarly, to increase an interest rate by 5% you'd do monthlyRate * 1.05. 
 */
 
+function mortgageCalculator(P, I, N, creditScore) {
+  if (creditScore > 740) {
+    I = I - (I * 0.05);
+  } else if (creditScore < 660) {
+    I = I + (I * 0.05);
+  } 
+  return (P * (I/12 * (1 + I/12)**(N * 12) / ((1 + I/12)**(N * 12) - 1)));
+}
 
+console.log(mortgageCalculator(200000, 0.05, 30, 650));
 
 
 // 🏡 Task 6: Loops
